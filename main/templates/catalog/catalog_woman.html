@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% bootstrap_css %}
+{% block title %}
+Женский зал
+{% endblock %}
+
+
+{% block content %}
+<section>
+      <h1 >Женский зал</h1>
+<div class="container">
+    <div class="row">
+
+
+<table class="table table-striped table-bordered table-sm ">
+  <thead>
+    <tr>
+      <th class="col1">№ п/п</th>
+      <th class="col2">Услуга</th>
+      <th>Стоимость (короткий волос - до 15 см)</th>
+
+      <th>Стоимость (средний волос - от 15 см до 25 см)</th>
+
+      <th>Стоимость (длинный волос - от 25 см до 40 см)</th>
+
+      <th>Стоимость (длинный волос - от 40 см выше)</th>
+
+    </tr>
+  </thead>
+  <tbody>
+{% if service %}
+{% for ser in service %}
+    <tr>
+      <th class="col1" scope="row">{{ ser.id }}</th>
+      <td class="col2" style="text-align: left;">{{ ser.name }}</td>
+      <td>{{ ser.price_1|default_if_none:"" }} {% if ser.price_1 %} руб {%endif%}</td>
+
+      <td>{{ ser.price_2|default_if_none:"" }} {% if ser.price_2 %} руб {%endif%}</td>
+
+      <td>{{ ser.price_3|default_if_none:"" }} {% if ser.price_3 %} руб {%endif%}</td>
+
+      <td>{{ ser.price_4|default_if_none:"" }} {% if ser.price_4 %} руб {%endif%}</td>
+
+   {% endfor %}
+    </tr>
+    {% else %}
+        <p>Каталог пуст</p>
+    {%endif%}
+  </tbody>
+</table>
+<p><br>*прейскурант на стрижки для пенсионеров действует с 9:оо до 15:оо</p>
+        </div>
+</div>
+</section>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'main/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% bootstrap_css %}
+{% block title %}
+Мастера
+{% endblock %}
+
+
+{% block content %}
+
+<section>
+<h2> Наши мастера:</h2>
+            <br>
+<div class="container">
+        <div class="row text-center">
+
+
+<div class="col-12 col-md-6">{% if master_1 %}
+  {% for m in master_1 %}
+    <a href="{% url 'masters_1'%}"><h4>{{ m.name }}</h4> <img style="height: 400px" src="{{ m.photo1.url }}"></a></div>
+
+     {% endfor %}
+        {% else %}
+            <p>Мастера отсутствуют</p>
+        {%endif%}
+
+            <div class="col-12 col-md-6">{% if master_2 %}
+  {% for m in master_2 %}
+    <a href="{% url 'masters_2' %}"><h4>{{ m.name }}</h4> <img style="height: 400px" src="{{ m.photo1.url }}"></a></div>
+
+     {% endfor %}
+        {% else %}
+            <p>Мастера отсутствуют</p>
+        {%endif%}
+ </div> <br>
+</div>
+
+</section>
+
+{% endblock %}
+
+
+
+    {% if master %}
+    {% for m in master %}
+    <a href="#"><h4>{{ m.name }}</h4> <br> <img style="height: 100px" src="{{ m.photo1.url }}"></a>
+       {% endfor %}
+        {% else %}
+            <p>Мастера отсутствуют</p>
+        {%endif%}

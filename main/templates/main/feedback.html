@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% bootstrap_css %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+<section>
+    <h1 style="padding-top: 15px;">Задайте нам вопрос:</h1>
+    <div class="container">
+        <div class="row" >
+             <div class="col-md">
+<div id="exampleModal" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background:transparent !important;" >
+       <div class="modal-header class__form">
+<form method="POST" enctype="multipart/form-data" class="post-form">
+    {% csrf_token %}
+    {{ form.name }}<br>
+    {{ form.tel }}<br>
+    {{ form.email }}<br>
+    {{ form.theme }}<br>
+    {{ form.contact }}<br>
+    <button type="submit" class="btn btn-success"> Добавить отзыв</button>
+    <span>{{ error }}</span>
+</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

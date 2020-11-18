@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% bootstrap_css %}
+{% block title %}
+Страница про нас
+{% endblock %}
+
+
+{% block content %}
+
+<section>
+<h2> Наши акции:</h2>
+    <br>
+    <div class="about__Us">
+<div class="container">
+        <div class="row text-center">
+                {% if sales %}
+    {% for sale in sales %}
+
+<div class="col-3 col-md-3 sale__1">
+
+    {% if sale.image %}<a href="{{ con.image.url }}" ><img style="width: 250px" src="{{ sale.image.url }}"> </a>{%endif%}</div>
+
+            <div class="col-3 col-md-3">
+            <h5>Название акции: "{{ sale.name }}"</h5>
+            <h6> Размер скидки: {{ sale.percentage|default_if_none:"" }} {% if sale.percentage %} % {%endif%} </h6>
+            <h6>Условие акции: {{ sale.word }}</h6>
+    <br>
+</div>
+        {% endfor %}
+        {% else %}
+            <p>Акции отсутствуют</p>
+        {%endif%}
+</div>
+        </div>
+    </div>
+</div>
+
+</section>
+
+{% endblock %}

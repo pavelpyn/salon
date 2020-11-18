@@ -1,0 +1,56 @@
+{% extends 'main/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% bootstrap_css %}
+{% block title %}
+Мастера
+{% endblock %}
+
+
+{% block content %}
+
+<section>
+    {% if master_1 %}
+  {% for m in master_1 %}
+
+<h2><br>{{ m.name }}</h2>
+
+<div class="container">
+        <div class="row text-center">
+
+<div class="col-12 col-md-12">
+    <img style="height: 500px" src="{{ m.photo1.url }}"></div>
+    <p><br>{{ m.comment }}</p>
+            <hr>
+           </div>{% if m.diploma1 %}
+     <h4 stle="text-align:center;">Дипломы и сертификаты, участие и победы в конкурсах</h4>
+
+                    <div class="col">
+                    <div id="owl-demo" class="owl-carousel">
+<div style="height: 400px"><a href="{{ m.diploma1.url }}" ><img  src="{{ m.diploma1.url }}"></a></div>
+<div style="height: 400px"><a href="{{ m.diploma2.url }}" ><img  src="{{ m.diploma2.url }}"></a></div>
+<div style="height: 400px"><a href="{{ m.diploma3.url }}" ><img  src="{{ m.diploma3.url }}"></a></div>
+<div style="height: 400px"><a href="{{ m.diploma4.url }}" ><img  src="{{ m.diploma4.url }}"></a></div>
+                    </div>
+                        <hr>
+                    </div>{% else%}<p stle="text-align:center;">Дипломы и сертификаты отсутствуют</p>{%endif%}
+                    {% if m.example1 %}
+     <h4 stle="text-align:center;">Примеры работ:</h4>
+                                     <ul class="images">
+<a href="{{ m.example1.url }}" ><img style="width: 250px" src="{{ m.example1.url }}"></a>
+<a href="{{ m.example2.url }}" ><img style="width: 250px" src="{{ m.example2.url }}"></a>
+<a href="{{ m.example3.url }}" ><img style="width: 250px" src="{{ m.example3.url }}"></a>
+<a href="{{ m.example4.url }}" ><img style="width: 250px" src="{{ m.example4.url }}"></a>
+                    </ul> <hr>
+
+</div>{% else%} <p>Нет примеров работ</p>{%endif%}     {% endfor %}
+        {% else %}
+            <p>Мастера отсутствуют</p>
+        {%endif%}<br>
+
+ </div>
+</div>
+
+</section>
+
+{% endblock %}

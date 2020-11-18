@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% bootstrap_css %}
+{% block title %}
+Контакты
+{% endblock %}
+{% block content %}
+<section>
+<h2>Наши контакты:</h2>
+    <br>
+<div class="container">
+    <div class="row">
+
+  <table class="table table-striped table-bordered">
+
+    {% if contact %}
+    {% for con in contact %}
+             <tr>
+      <th>Название парикмахерской: </th>
+      <th>{{ con.name }}</th>
+            </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th>Наш адресс:</th>
+      <td>{{ con.address }}</td>
+    </tr>
+   <tr>
+     <tr>
+      <th>Номер телефона:</th>
+      <td>{{ con.tel }}</td>
+    </tr>
+    <tr>
+        <tr>
+      <th>Наш email: </th>
+      <td>{{ con.email }}</td>
+    </tr>
+       <tr>
+        <tr>
+      <th>Наши социальные сети:</th>
+      <td>{{ con.social }}</td>
+    </tr>
+  </tbody>
+</table>
+        {% endfor %}
+    {% else %}
+        <p>Контакты отсутствуют</p>
+    {%endif%}
+    </div>
+        <br>
+</div>
+
+</section>
+{% endblock %}

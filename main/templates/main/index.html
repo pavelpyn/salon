@@ -1,0 +1,109 @@
+{% extends 'main/base.html'%}
+
+{% load bootstrap4 %}
+{% load static %}
+{% bootstrap_css %}
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+
+<section>
+    <div class="LineAkcii">
+        <div class="container">
+            <div class="row Akciiposition">
+                <div class="col-md-12">
+                            <div class="col">   <a href="/sale"> <h1 style="font-size: 25px;">Наши акции:</h1></a></div>
+                </div>
+                    <div class="col-md-6">
+
+                    <a class="picakcii" href="/sale">Пенсионерам: <img src="{% static '/main/images/akcii.jpg' %}" width="150"  hspace="1" vspace="4" align="center" alt="АКЦИЯ"></a>
+                    <a class="picakcii" href="/sale">Студентам: <img src="{% static '/main/images/akcii.jpg' %}" width="150"  hspace="1" vspace="4" align="center" alt="АКЦИЯ"></a>
+                    </div>
+                        <div class="col-md-6">
+
+                    <a class="picakcii" href="/sale">Постоянным клиентам: <img src="{% static '/main/images/akcii.jpg' %}" width="150"  hspace="1" vspace="4" align="center" alt="АКЦИЯ"></a>
+                    <a class="picakcii" href="/sale"> новым клиентам: <img src="{% static '/main/images/akcii.jpg' %}" width="150"  hspace="1" vspace="4" align="center" alt="АКЦИЯ"></a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="Primerirabot">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                   <div class="col"> <a href="/examples"><h2 style="font-size: 25px;">Примеры наших работ: </h2></a></div>
+               {% if example %}      <div id="owl-demo" class="owl-carousel"> {% for rev in example %} {%if rev.example1 %}
+<div style="height: 500px"><img src="{{ rev.example1.url }}"></div>
+<div style="height: 500px"><img src="{{ rev.example2.url }}"></div>
+<div style="height: 500px"><img src="{{ rev.example3.url }}"></div>
+<div style="height: 500px"><img src="{{ rev.example4.url }}"></div>{%else %} <p>Примера нет</p>{%endif%}{% endfor %} {%else %} <p>Примеров нет</p>{%endif%}
+
+
+                   </div>
+               </div>
+           </div>
+        </div>
+    </div>
+
+</section>
+
+<section>
+    <div class="reviews">
+        <div class="container">
+            <div class="row">
+                <div class="col"><hr><h3><a href="/reviews">Отзывы наших клиентов:</a></h3></div> <br>
+    {% if reviews %}
+<div id="owl-reviews" class="owl-carousel block-items">{% for rev in reviews %}
+    <div class="item">
+        <div class="inner-testimonial">{% if rev.image %}<a href="{{ rev.image.url }}" ><img style="width: 120px" src="{{ rev.image.url }}"> </a>
+    {% else %}<a href="{% static '/main/images/reviews/no_photo.png' %}"><img style="width: 120px"src="{% static '/main/images/reviews/no_photo.png' %}"> </a>
+    {% endif %}<h5>{{ rev.name }}, {{ rev.age }}</h5><p class="text-testimonial"> {{ rev.review }}</p>
+       </div>
+    </div>{% endfor %}
+                 {% else %}
+    <p>Отзывы отсутствуют</p>
+    {%endif%}
+</div>
+</div>
+
+    <a href="button" class="line1__btn" data-toggle="modal" data-target="#exampleModal"><b>Добавить отзыв</b></a>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+       <div class="modal-header class__form">
+
+<form  method="POST" enctype="multipart/form-data " class="post-form ">
+    {% csrf_token %}
+    {{ form.name }}<br>
+    {{ form.age }}<br>
+    {{ form.email }}<br>
+    {{ form.tel }}<br>
+    {{ form.image }}<br>
+    {{ form.review }}<br>
+    <button type="submit" class="btn btn-success "> Добавить отзыв</button>
+    <span>{{ error }}</span>
+</form>
+
+       </div>
+    </div>
+  </div>
+</div>
+             <div class="container">
+            <div class="row">
+                <hr></div></div>
+
+</div>
+</div>
+
+</section>
+{% endblock %}

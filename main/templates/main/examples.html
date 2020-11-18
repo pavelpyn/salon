@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% bootstrap_css %}
+{% block title %}
+Примеры
+{% endblock %}
+
+
+{% block content %}
+
+<section>
+
+       <h2 stle="text-align:center;">Примеры работ наших мастеров:</h2>
+     {% if example %}
+  {% for ex in example %}
+<div class="container">
+<div class="row text-center">
+<div class="col-12 col-md-12">
+
+{% if ex.example1 %}
+<ul class="images">
+   <h5> {{ex.name}}</h5>
+    <br>
+<a href="{{ ex.example1.url }}" ><img style="width: 250px" src="{{ ex.example1.url }}"></a>
+<a href="{{ ex.example2.url }}" ><img style="width: 250px" src="{{ ex.example2.url }}"></a>
+<a href="{{ ex.example3.url }}" ><img style="width: 250px" src="{{ ex.example3.url }}"></a>
+<a href="{{ ex.example4.url }}" ><img style="width: 250px" src="{{ ex.example4.url }}"></a>
+</ul> <hr>
+{% else %}
+            <p>У остальных мастеров примеров нет</p>
+        {%endif%}
+</div>   {% endfor %}{% else %}
+            <p>Фото работ мастеров мы ещё не добавили</p>
+        {%endif%}
+
+        <br>
+ </div>
+
+</div>
+
+</section>
+
+{% endblock %}
